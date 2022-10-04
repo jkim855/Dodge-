@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/play.png" type="Texture" id=1]
+[ext_resource path="res://assets/Backgrou.png" type="Texture" id=2]
+[ext_resource path="res://Pause.gd" type="Script" id=3]
+[ext_resource path="res://assets/Facon.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 110
+font_data = ExtResource( 4 )
+
+[sub_resource type="CircleShape2D" id=13]
+radius = 300.0
+
+[node name="Pause" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Backgrou" type="Sprite" parent="."]
+position = Vector2( 552, 333 )
+scale = Vector2( 1.90972, 2.05555 )
+z_index = -1
+texture = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="End_Screen" type="Label" parent="CanvasLayer"]
+modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
+margin_left = 320.0
+margin_top = 154.0
+margin_right = 1186.0
+margin_bottom = 278.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 0.635294, 0.862745, 0.941176, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "PAUSED"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="TouchScreenButton" parent="CanvasLayer"]
+pause_mode = 2
+position = Vector2( 475, 400 )
+scale = Vector2( 0.3, 0.3 )
+normal = ExtResource( 1 )
+shape = SubResource( 13 )
+
+[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_Play_pressed"]

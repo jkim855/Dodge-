@@ -1,0 +1,139 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/skins/player.png" type="Texture" id=2]
+[ext_resource path="res://src/Dash.gd" type="Script" id=3]
+[ext_resource path="res://src/shader_material.tres" type="Material" id=4]
+[ext_resource path="res://assets/restore.png" type="Texture" id=5]
+[ext_resource path="res://assets/restore2.png" type="Texture" id=6]
+[ext_resource path="res://assets/guard.png" type="Texture" id=7]
+[ext_resource path="res://assets/sounds/dash.mp3" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/Super jump (mp3cut.net) (1).mp3" type="AudioStream" id=9]
+[ext_resource path="res://assets/sounds/stomp.mp3" type="AudioStream" id=10]
+[ext_resource path="res://assets/sounds/Hook2-1 (mp3cut.net).mp3" type="AudioStream" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48.052, 47.4026 )
+
+[node name="Player" type="KinematicBody2D"]
+rotation = -6.28319
+scale = Vector2( 0.77, 0.77 )
+collision_mask = 8
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3.71561e-06, 0.649354 )
+shape = SubResource( 1 )
+
+[node name="PlayerSprite" type="Sprite" parent="."]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+material = ExtResource( 4 )
+position = Vector2( 2.98023e-08, -2.38419e-07 )
+texture = ExtResource( 2 )
+
+[node name="Shrink_Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Grow_Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Dash_Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="hook_accel" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="Dash" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="D_Timer" type="Timer" parent="Dash"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Ghost_Timer" type="Timer" parent="Dash"]
+wait_time = 0.03
+
+[node name="Timer" type="Timer" parent="Dash"]
+
+[node name="dash" type="AudioStreamPlayer" parent="Dash"]
+pause_mode = 2
+stream = ExtResource( 8 )
+bus = "SFX"
+
+[node name="Super_Jump_Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Restore_Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="Restore_in" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="restore_particles" type="CPUParticles2D" parent="."]
+modulate = Color( 0, 1, 0.0862745, 1 )
+scale = Vector2( 0.2, 0.2 )
+emitting = false
+texture = ExtResource( 5 )
+direction = Vector2( 0, -10 )
+gravity = Vector2( 0, 20 )
+initial_velocity = 20.0
+
+[node name="Restore" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+position = Vector2( 2.38419e-06, 1.90735e-06 )
+scale = Vector2( 1.37291, 1.33478 )
+texture = ExtResource( 6 )
+
+[node name="Guard" type="Sprite" parent="."]
+visible = false
+position = Vector2( -1.2987, -2.5974 )
+scale = Vector2( 0.54329, 0.54329 )
+texture = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Guard"]
+wait_time = 0.05
+
+[node name="Float_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Super_Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Stomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="Hook" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="flash" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="rotation" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="attack" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="attack_dur" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="Shrink_Timer" to="." method="_on_Shrink_Timer_timeout"]
+[connection signal="timeout" from="Grow_Timer" to="." method="_on_Grow_Timer_timeout"]
+[connection signal="timeout" from="Dash_Timer" to="." method="_on_Dash_Timer_timeout"]
+[connection signal="timeout" from="hook_accel" to="." method="_on_hook_accel_timeout"]
+[connection signal="timeout" from="Dash/D_Timer" to="Dash" method="_on_D_Timer_timeout"]
+[connection signal="timeout" from="Dash/Ghost_Timer" to="Dash" method="_on_Ghost_Timer_timeout"]
+[connection signal="timeout" from="Super_Jump_Timer" to="." method="_on_Super_Jump_Timer_timeout"]
+[connection signal="timeout" from="Restore_Timer" to="." method="_on_Restore_Timer_timeout"]
+[connection signal="timeout" from="Restore_in" to="." method="_on_Restore_in_timeout"]
+[connection signal="timeout" from="Guard/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Float_Timer" to="." method="_on_Float_Timer_timeout"]
+[connection signal="timeout" from="flash" to="." method="_on_flash_timeout"]
+[connection signal="timeout" from="rotation" to="." method="_on_rotation_timeout"]
+[connection signal="timeout" from="attack" to="." method="_on_attack_timeout"]
+[connection signal="timeout" from="attack_dur" to="." method="_on_attack_dur_timeout"]

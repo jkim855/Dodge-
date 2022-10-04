@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/DashGhost.gd" type="Script" id=1]
+[ext_resource path="res://assets/skins/player.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item; 
+
+uniform bool whiten = false;
+uniform bool purplen = false;
+uniform float mix_weight = 1.0;
+ 
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (whiten) {
+		vec3 white = vec3(1,1,1);
+		vec3 whitened_texture_rgb = mix(texture_color.rgb, white, mix_weight);
+		COLOR = vec4(whitened_texture_rgb, texture_color.a); 
+	} 
+//	else if (purplen){
+//		vec3 purple = vec3(5,0,5);
+//		vec3 purplened_texture_rgb = mix(texture_color.rgb, purple, mix_weight);
+//		COLOR = vec4(purplened_texture_rgb, texture_color.a); 
+//	}
+	
+	else {
+		COLOR = texture_color 
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 3 )
+shader_param/whiten = true
+shader_param/purplen = false
+shader_param/mix_weight = 1.0
+
+[node name="DashGhost" type="Sprite"]
+modulate = Color( 0.854902, 0.854902, 0.854902, 1 )
+material = SubResource( 2 )
+position = Vector2( 0, -2.38419e-07 )
+scale = Vector2( 0.77, 0.77 )
+z_index = -1
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="GhostTween" type="Tween" parent="."]
+
+[connection signal="tween_completed" from="GhostTween" to="." method="_on_GhostTween_tween_completed"]

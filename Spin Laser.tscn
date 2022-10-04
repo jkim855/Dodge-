@@ -1,0 +1,331 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://src/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Player2.gd" type="Script" id=2]
+[ext_resource path="res://src/Spin_Laser.gd" type="Script" id=3]
+[ext_resource path="res://assets/background/all_two2.png" type="Texture" id=4]
+[ext_resource path="res://src/Test_Room.gd" type="Script" id=5]
+[ext_resource path="res://src/Touch_Buttons2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Health2.gd" type="Script" id=7]
+[ext_resource path="res://assets/background/all_two4.png" type="Texture" id=8]
+[ext_resource path="res://assets/background/fill.png" type="Texture" id=9]
+[ext_resource path="res://assets/Facon.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://assets/ARLRDBD.TTF" type="DynamicFontData" id=19]
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=20]
+[ext_resource path="res://src/Death_Popup.gd" type="Script" id=21]
+[ext_resource path="res://assets/ad.png" type="Texture" id=22]
+[ext_resource path="res://assets/wall tiles.png" type="Texture" id=23]
+[ext_resource path="res://assets/background/all_two3.png" type="Texture" id=24]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 751.5 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 751 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 36.5, 511.5 )
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 72.5, 511.5 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 27.925, 32 )
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 27.925, 57 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 1.825, 513.5 )
+
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 3.5, 513.5 )
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 717.501, 682.5 )
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 940, 922.5 )
+
+[sub_resource type="CircleShape2D" id=35]
+radius = 30.0
+
+[sub_resource type="Environment" id=12]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 0.95
+glow_blend_mode = 0
+
+[sub_resource type="DynamicFont" id=18]
+size = 110
+font_data = ExtResource( 19 )
+
+[sub_resource type="DynamicFont" id=20]
+size = 100
+font_data = ExtResource( 18 )
+
+[sub_resource type="CircleShape2D" id=30]
+radius = 300.0
+
+[sub_resource type="RectangleShape2D" id=36]
+extents = Vector2( 3.6, 513.5 )
+
+[node name="Scene" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 5 )
+
+[node name="fill" type="Sprite" parent="."]
+position = Vector2( 554, 126 )
+z_index = -2
+texture = ExtResource( 9 )
+
+[node name="bg" type="Node2D" parent="."]
+position = Vector2( 564, 135 )
+
+[node name="All" type="Sprite" parent="bg"]
+position = Vector2( 0, -1 )
+z_index = -2
+texture = ExtResource( 8 )
+offset = Vector2( -1, 3.5 )
+
+[node name="Tiles" type="Sprite" parent="bg"]
+modulate = Color( 0.760784, 0.639216, 1, 1 )
+position = Vector2( 0, -1 )
+texture = ExtResource( 23 )
+offset = Vector2( -1, 190.5 )
+
+[node name="Player" parent="bg" instance=ExtResource( 1 )]
+pause_mode = 1
+position = Vector2( 2, 72.5 )
+script = ExtResource( 2 )
+
+[node name="View" type="Camera2D" parent="bg/Player"]
+visible = false
+position = Vector2( -2, 114 )
+limit_left = 0
+limit_top = -220
+limit_right = 1120
+limit_bottom = 650
+limit_smoothed = true
+smoothing_enabled = true
+drag_margin_left = 1.0
+drag_margin_top = 1.0
+drag_margin_right = 1.0
+drag_margin_bottom = 1.0
+
+[node name="Laser" type="Node2D" parent="bg"]
+pause_mode = 1
+position = Vector2( 0, -0.5 )
+rotation = -0.785398
+script = ExtResource( 3 )
+
+[node name="Up" type="Area2D" parent="bg/Laser"]
+position = Vector2( -54, -752 )
+collision_layer = 0
+
+[node name="Line2D" type="Line2D" parent="bg/Laser/Up"]
+modulate = Color( 1.25, 1, 1, 1 )
+position = Vector2( 54, 4.00012 )
+rotation = 1.5708
+points = PoolVector2Array( -40, 0, 1540, 0 )
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="bg/Laser/Up"]
+
+[node name="Appear_Timer" type="Timer" parent="bg/Laser/Up"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bg/Laser/Up"]
+position = Vector2( 54, 751.5 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Down" type="Area2D" parent="bg/Laser"]
+position = Vector2( 1318, 45 )
+rotation = 1.5708
+collision_layer = 0
+
+[node name="Line2D" type="Line2D" parent="bg/Laser/Down"]
+modulate = Color( 1.25, 1, 1, 1 )
+position = Vector2( -44.9944, 567 )
+rotation = 1.5708
+points = PoolVector2Array( -40, 0, 1540, 0 )
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="bg/Laser/Down"]
+
+[node name="Appear_Timer" type="Timer" parent="bg/Laser/Down"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="bg/Laser/Down"]
+position = Vector2( -44.9971, 1317 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Timer" type="Timer" parent="bg/Laser"]
+wait_time = 0.05
+
+[node name="fade_timer" type="Timer" parent="bg/Laser"]
+wait_time = 0.05
+
+[node name="All" type="Sprite" parent="."]
+visible = false
+position = Vector2( 563, 212 )
+texture = ExtResource( 24 )
+
+[node name="All2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 561, 89 )
+texture = ExtResource( 4 )
+offset = Vector2( -1, -87 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="rotate_timer" type="Timer" parent="."]
+wait_time = 0.03
+
+[node name="bgCollision" type="Node2D" parent="."]
+position = Vector2( -10, 0 )
+
+[node name="Left Wall" type="StaticBody2D" parent="bgCollision"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bgCollision/Left Wall"]
+visible = false
+position = Vector2( 43.5, 140.5 )
+shape = SubResource( 21 )
+
+[node name="Bigger" type="CollisionShape2D" parent="bgCollision/Left Wall"]
+position = Vector2( 79.5, 140.5 )
+shape = SubResource( 33 )
+
+[node name="Floor" type="StaticBody2D" parent="bgCollision"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bgCollision/Floor"]
+visible = false
+position = Vector2( 570.5, 622 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 22 )
+
+[node name="Bigger" type="CollisionShape2D" parent="bgCollision/Floor"]
+position = Vector2( 570.5, 597 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 32 )
+
+[node name="Right Wall" type="StaticBody2D" parent="bgCollision"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bgCollision/Right Wall"]
+visible = false
+position = Vector2( 1095.5, 142.5 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 23 )
+
+[node name="Bigger" type="CollisionShape2D" parent="bgCollision/Right Wall"]
+position = Vector2( 1062, 142.5 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 34 )
+
+[node name="Touch_Buttons" parent="." instance=ExtResource( 6 )]
+
+[node name="Health" parent="Touch_Buttons" index="0"]
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D2" parent="Touch_Buttons/Left_UI_Area" index="0"]
+shape = SubResource( 27 )
+
+[node name="CollisionShape2D" parent="Touch_Buttons/Right_UI_Area" index="0"]
+shape = SubResource( 28 )
+
+[node name="Joystick" parent="Touch_Buttons/Joypad" index="1"]
+shape = SubResource( 35 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 12 )
+
+[node name="Death_Popup" type="Popup" parent="."]
+pause_mode = 2
+margin_right = 1102.0
+margin_bottom = 657.0
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume_Timer" type="Timer" parent="Death_Popup"]
+pause_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Death_Popup"]
+
+[node name="Revive" type="Label" parent="Death_Popup/CanvasLayer"]
+visible = false
+modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
+margin_left = 358.0
+margin_top = 138.0
+margin_right = 1224.0
+margin_bottom = 267.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 0.635294, 0.862745, 0.941176, 1 )
+custom_fonts/font = SubResource( 18 )
+text = "Revive?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Countdown" type="Label" parent="Death_Popup/CanvasLayer"]
+visible = false
+margin_left = 509.0
+margin_top = 281.0
+margin_right = 691.0
+margin_bottom = 386.0
+custom_fonts/font = SubResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Revive2" type="TouchScreenButton" parent="Death_Popup/CanvasLayer"]
+visible = false
+position = Vector2( 488, 403 )
+scale = Vector2( 0.322266, 0.322266 )
+z_index = 3
+normal = ExtResource( 22 )
+shape = SubResource( 30 )
+
+[node name="AdMob" type="Node" parent="Death_Popup"]
+script = ExtResource( 20 )
+is_real = true
+rewarded_id = "ca-app-pub-4663471829826656/4648394703"
+
+[node name="Timer" type="Timer" parent="Death_Popup"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Bigger2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1050, 142.5 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 36 )
+
+[node name="speed" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="bg/Laser/Up" to="bg/Laser" method="_on_Up_body_entered"]
+[connection signal="body_entered" from="bg/Laser/Down" to="bg/Laser" method="_on_Down_body_entered"]
+[connection signal="timeout" from="bg/Laser/Timer" to="bg/Laser" method="_on_Timer_timeout"]
+[connection signal="timeout" from="bg/Laser/fade_timer" to="bg/Laser" method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="rotate_timer" to="." method="_on_rotate_timer_timeout"]
+[connection signal="pressed" from="Death_Popup/CanvasLayer/Revive2" to="Death_Popup" method="_on_Revive_pressed"]
+[connection signal="rewarded" from="Death_Popup/AdMob" to="Death_Popup" method="_on_AdMob_rewarded"]
+[connection signal="timeout" from="Death_Popup/Timer" to="Death_Popup" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="speed" to="bg/Laser" method="_on_speed_timeout"]
+
+[editable path="Touch_Buttons"]

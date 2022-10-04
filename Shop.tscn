@@ -1,0 +1,272 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://assets/ARLRDBD.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/Backgrou.png" type="Texture" id=3]
+[ext_resource path="res://assets/Facon.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/back.png" type="Texture" id=5]
+[ext_resource path="res://assets/Background.png" type="Texture" id=6]
+[ext_resource path="res://assets/button_bg.png" type="Texture" id=7]
+[ext_resource path="res://assets/left arrow.png" type="Texture" id=8]
+[ext_resource path="res://assets/settings_bg.png" type="Texture" id=9]
+[ext_resource path="res://assets/right arrow.png" type="Texture" id=10]
+[ext_resource path="res://assets/skins/player.png" type="Texture" id=11]
+[ext_resource path="res://src/Shop.gd" type="Script" id=12]
+[ext_resource path="res://assets/button_bg_pressed.png" type="Texture" id=13]
+[ext_resource path="res://assets/money_board.png" type="Texture" id=16]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 300.0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 100, 45 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 100, 45 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 36
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 110
+font_data = ExtResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 100, 100 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 100, 100 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 100, 50 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 45
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="Environment" id=12]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 0.95
+glow_blend_mode = 0
+
+[sub_resource type="DynamicFont" id=15]
+size = 42
+outline_color = Color( 0.517647, 0.796078, 0.87451, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Shop" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 571, 406 )
+texture = ExtResource( 9 )
+
+[node name="Back" type="TouchScreenButton" parent="."]
+position = Vector2( 950, 500 )
+scale = Vector2( 0.2, 0.2 )
+normal = ExtResource( 5 )
+shape = SubResource( 4 )
+
+[node name="Backgrou" type="Sprite" parent="."]
+position = Vector2( 569, 328 )
+scale = Vector2( 1.04545, 1 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="skins_button" type="TouchScreenButton" parent="."]
+position = Vector2( 20, 212 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 13 )
+shape = SubResource( 6 )
+
+[node name="Skins" type="Label" parent="skins_button"]
+modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
+margin_left = 49.0
+margin_top = 25.0
+margin_right = 196.0
+margin_bottom = 92.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 0.635294, 0.862745, 0.941176, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Skins"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backgrounds_button" type="TouchScreenButton" parent="."]
+position = Vector2( 20, 340 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 13 )
+shape = SubResource( 17 )
+
+[node name="Backgrounds" type="Label" parent="backgrounds_button"]
+modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
+margin_left = 8.0
+margin_top = 34.0
+margin_right = 270.0
+margin_bottom = 101.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 0.635294, 0.862745, 0.941176, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Backgrounds"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
+margin_left = 387.0
+margin_top = 79.0
+margin_right = 1253.0
+margin_bottom = 203.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 0.635294, 0.862745, 0.941176, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "shop"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="popups" type="Node2D" parent="."]
+
+[node name="skins_window" type="Popup" parent="popups"]
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="popups/skins_window"]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( 553, 361 )
+scale = Vector2( 1.20833, 1.20833 )
+texture = ExtResource( 11 )
+
+[node name="left_arrow" type="TouchScreenButton" parent="popups/skins_window"]
+position = Vector2( 359, 305 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 8 )
+shape = SubResource( 13 )
+
+[node name="right_arrow" type="TouchScreenButton" parent="popups/skins_window"]
+position = Vector2( 663, 303 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 10 )
+shape = SubResource( 14 )
+
+[node name="confirm" type="TouchScreenButton" parent="popups/skins_window"]
+position = Vector2( 465, 506 )
+scale = Vector2( 0.9, 0.8 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 13 )
+shape = SubResource( 8 )
+
+[node name="confirm" type="Label" parent="popups/skins_window/confirm"]
+modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
+margin_left = 26.6667
+margin_top = 20.0
+margin_right = 174.667
+margin_bottom = 87.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 0.635294, 0.862745, 0.941176, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "confirm"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="purchase" type="TouchScreenButton" parent="popups/skins_window"]
+position = Vector2( 465, 506 )
+scale = Vector2( 0.9, 0.8 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 13 )
+shape = SubResource( 8 )
+
+[node name="purchase" type="Label" parent="popups/skins_window/purchase"]
+modulate = Color( 0.819608, 0.819608, 0.819608, 1 )
+margin_left = 17.7778
+margin_top = 22.5
+margin_right = 183.778
+margin_bottom = 89.5
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 0.635294, 0.862745, 0.941176, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "purchase"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="price" type="Label" parent="popups/skins_window"]
+margin_left = 522.0
+margin_top = 436.0
+margin_right = 605.0
+margin_bottom = 498.0
+custom_fonts/font = SubResource( 21 )
+text = "10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="backgrounds_window" type="Popup" parent="popups"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="popups/backgrounds_window"]
+position = Vector2( 576, 417 )
+scale = Vector2( 0.432083, 0.432083 )
+texture = ExtResource( 6 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="popups/backgrounds_window"]
+position = Vector2( 243, 367 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 8 )
+
+[node name="TouchScreenButton2" type="TouchScreenButton" parent="popups/backgrounds_window"]
+position = Vector2( 822, 365 )
+scale = Vector2( 0.5, 0.5 )
+normal = ExtResource( 10 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 879, 57 )
+texture = ExtResource( 16 )
+
+[node name="Money" type="Label" parent="Sprite"]
+margin_left = -70.0
+margin_top = -24.0
+margin_right = 77.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 15 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="skins_button" to="." method="_on_skins_button_pressed"]
+[connection signal="pressed" from="backgrounds_button" to="." method="_on_backgrounds_button_pressed"]
+[connection signal="pressed" from="popups/skins_window/left_arrow" to="." method="_on_left_arrow_pressed"]
+[connection signal="pressed" from="popups/skins_window/right_arrow" to="." method="_on_right_arrow_pressed"]
+[connection signal="pressed" from="popups/skins_window/confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="popups/skins_window/purchase" to="." method="_on_purchase_pressed"]

@@ -1,0 +1,394 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/background/fill.png" type="Texture" id=1]
+[ext_resource path="res://assets/skins/player.png" type="Texture" id=2]
+[ext_resource path="res://src/Dialogue.gd" type="Script" id=3]
+[ext_resource path="res://assets/tutorial/tutorial_floor.png" type="Texture" id=4]
+[ext_resource path="res://assets/tutorial/enemy.png" type="Texture" id=5]
+[ext_resource path="res://assets/tutorial/fairy.png" type="Texture" id=6]
+[ext_resource path="res://assets/tutorial/window.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/wwDigital.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/tutorial/arrow.png" type="Texture" id=9]
+[ext_resource path="res://src/window.gd" type="Script" id=10]
+[ext_resource path="res://assets/blood.png" type="Texture" id=11]
+[ext_resource path="res://assets/tutorial/portal.png" type="Texture" id=12]
+[ext_resource path="res://assets/replace later/hit.mp3" type="AudioStream" id=13]
+
+[sub_resource type="DynamicFont" id=38]
+size = 42
+font_data = ExtResource( 8 )
+
+[sub_resource type="Environment" id=12]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 0.95
+glow_blend_mode = 0
+
+[sub_resource type="Animation" id=13]
+resource_name = "Attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 352, 434 ), Vector2( 600, 434 ), Vector2( 352, 434 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("enemy:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("SFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 13 )
+} ],
+"times": PoolRealArray( 0.2 )
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Die"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("enemy:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.01696, 1 ), Vector2( 0.2, 0.5 ), Vector2( 0.2, 0.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("enemy:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "Attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 352, 434 ), Vector2( 600, 434 ), Vector2( 352, 434 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("enemy:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "Die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("enemy:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7 ),
+"transitions": PoolRealArray( 2, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.01696, 1 ), Vector2( 0.2, 1.2 ), Vector2( 0.2, 0.2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("enemy:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Arrow"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("window/arrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 963, 572 ), Vector2( 963, 572 ), Vector2( 963, 550 ), Vector2( 963, 572 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 352, 434 ), Vector2( 600, 434 ), Vector2( 352, 434 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("enemy:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=39]
+resource_name = "Fall"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 352, 434 ), Vector2( 320, 300 ), Vector2( 220, 200 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 65.0, 135.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.85, 0.85 ), Vector2( 0.65, 0.65 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "Portal"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("portal:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("portal:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6 ),
+"transitions": PoolRealArray( 0.5, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.392, 0.392 ), Vector2( 2.7, 0.392 ), Vector2( 1.79167, 1.79167 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Dialogue" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="window" type="Node2D" parent="."]
+z_index = 2
+script = ExtResource( 10 )
+
+[node name="window" type="Sprite" parent="window"]
+position = Vector2( 568, 475 )
+scale = Vector2( 1.03393, 0.626154 )
+texture = ExtResource( 7 )
+
+[node name="text" type="Label" parent="window"]
+modulate = Color( 1, 0.964706, 0.133333, 1 )
+margin_left = 167.0
+margin_top = 477.0
+margin_right = 1095.0
+margin_bottom = 615.0
+custom_fonts/font = SubResource( 38 )
+text = "fasd asd"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="arrow" type="Sprite" parent="window"]
+position = Vector2( 963, 572 )
+scale = Vector2( 0.181666, 0.181666 )
+texture = ExtResource( 9 )
+
+[node name="Timer" type="Timer" parent="window"]
+wait_time = 0.05
+one_shot = true
+
+[node name="fill" type="Sprite" parent="."]
+position = Vector2( 564, 333.5 )
+scale = Vector2( 0.774667, 0.456667 )
+z_index = -2
+texture = ExtResource( 1 )
+
+[node name="floor" type="Sprite" parent="."]
+position = Vector2( 563, 161 )
+scale = Vector2( 1.01696, 1 )
+texture = ExtResource( 4 )
+
+[node name="enemy" type="Sprite" parent="."]
+position = Vector2( 837, 279 )
+scale = Vector2( 1.01696, 1 )
+texture = ExtResource( 5 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 12 )
+
+[node name="fairy" type="Sprite" parent="."]
+position = Vector2( 93, 80 )
+scale = Vector2( 0.773333, 0.773333 )
+texture = ExtResource( 6 )
+
+[node name="Player" type="Sprite" parent="."]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( 352, 434 )
+z_index = 1
+texture = ExtResource( 2 )
+
+[node name="Attack" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 13 )
+anims/Die = SubResource( 17 )
+
+[node name="Die" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 18 )
+anims/Die = SubResource( 19 )
+
+[node name="Arrow" type="AnimationPlayer" parent="."]
+anims/Arrow = SubResource( 14 )
+anims/Attack = SubResource( 15 )
+
+[node name="Fall" type="AnimationPlayer" parent="."]
+anims/Fall = SubResource( 39 )
+
+[node name="portal" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+position = Vector2( 175, 182 )
+scale = Vector2( 0.392, 0.392 )
+texture = ExtResource( 12 )
+
+[node name="Portal2" type="AnimationPlayer" parent="."]
+anims/Portal = SubResource( 40 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color( 0.309804, 0.690196, 0.447059, 1 )
+position = Vector2( 139, 202 )
+emitting = false
+amount = 32
+texture = ExtResource( 11 )
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 150.0
+radial_accel = -300.0
+scale_amount = 0.01
+scale_amount_random = 0.03
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[connection signal="animation_finished" from="Fall" to="window" method="_on_Fall_animation_finished"]
+[connection signal="animation_finished" from="Portal2" to="window" method="_on_Portal2_animation_finished"]

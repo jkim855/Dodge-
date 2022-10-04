@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=1]
+[ext_resource path="res://src/Revive_Ad2.gd" type="Script" id=2]
+
+[node name="ReviveAd2" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="AdMob" type="Node" parent="."]
+script = ExtResource( 1 )
+is_real = true
+banner_on_top = false
+rewarded_id = "ca-app-pub-4663471829826656/4110903691"
+
+[connection signal="rewarded" from="AdMob" to="." method="_on_AdMob_rewarded"]

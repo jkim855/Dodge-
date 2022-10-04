@@ -1,0 +1,845 @@
+[gd_scene load_steps=61 format=2]
+
+[ext_resource path="res://assets/ARLRDBD.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://src/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Touch_Buttons2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sounds/laser.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/wall tiles_left.png" type="Texture" id=5]
+[ext_resource path="res://assets/ad8.png" type="Texture" id=6]
+[ext_resource path="res://src/Score.gd" type="Script" id=7]
+[ext_resource path="res://src/Death_Popup.gd" type="Script" id=8]
+[ext_resource path="res://src/Level.gd" type="Script" id=9]
+[ext_resource path="res://assets/back.png" type="Texture" id=10]
+[ext_resource path="res://assets/play.png" type="Texture" id=11]
+[ext_resource path="res://assets/exit5.png" type="Texture" id=12]
+[ext_resource path="res://assets/Blank.png" type="Texture" id=13]
+[ext_resource path="res://assets/floor.png" type="Texture" id=14]
+[ext_resource path="res://assets/background/all.png" type="Texture" id=15]
+[ext_resource path="res://assets/background/outer.png" type="Texture" id=16]
+[ext_resource path="res://src/Popup.gd" type="Script" id=17]
+[ext_resource path="res://assets/background/inner.png" type="Texture" id=18]
+[ext_resource path="res://assets/Facon.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://assets/background/horizontal.png" type="Texture" id=20]
+[ext_resource path="res://assets/Background_color.png" type="Texture" id=21]
+[ext_resource path="res://src/Spin_Laser.gd" type="Script" id=22]
+[ext_resource path="res://assets/background/all_two4.png" type="Texture" id=23]
+[ext_resource path="res://assets/wall tiles.png" type="Texture" id=24]
+[ext_resource path="res://assets/background/fill.png" type="Texture" id=25]
+[ext_resource path="res://src/Background2.gd" type="Script" id=26]
+[ext_resource path="res://assets/sounds/die.mp3" type="AudioStream" id=27]
+[ext_resource path="res://assets/popup_bg.png" type="Texture" id=28]
+[ext_resource path="res://assets/sounds/Waterflame - Hexagon Force (mp3cut.net).mp3" type="AudioStream" id=29]
+[ext_resource path="res://assets/fonts/wwDigital.ttf" type="DynamicFontData" id=30]
+[ext_resource path="res://assets/ad_heart.png" type="Texture" id=31]
+[ext_resource path="res://src/Background.gd" type="Script" id=32]
+[ext_resource path="res://assets/Give up.png" type="Texture" id=33]
+[ext_resource path="res://assets/death_cover.png" type="Texture" id=34]
+[ext_resource path="res://assets/clock3.png" type="Texture" id=35]
+[ext_resource path="res://assets/clock4.png" type="Texture" id=36]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5, 751.5 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5, 751 )
+
+[sub_resource type="DynamicFont" id=39]
+size = 48
+font_data = ExtResource( 30 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 36
+font_data = ExtResource( 30 )
+
+[sub_resource type="Environment" id=12]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 0.95
+glow_blend_mode = 0
+
+[sub_resource type="DynamicFont" id=40]
+size = 110
+font_data = ExtResource( 19 )
+
+[sub_resource type="DynamicFont" id=20]
+size = 100
+font_data = ExtResource( 19 )
+
+[sub_resource type="CircleShape2D" id=13]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id=19]
+radius = 280.0
+
+[sub_resource type="Animation" id=16]
+resource_name = "Fade_In"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Intro/Sprites/Line:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.3 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1.3, 1.3, 1.3, 0 ), Color( 1.1, 1.1, 1.1, 1 ), Color( 1.2, 1.2, 1.2, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Intro")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "move_floor"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Intro/Sprites/Lines:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("Intro")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.4, 1.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "particle_on"
+}, {
+"args": [  ],
+"method": "_on_Jump_timeout"
+} ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "Jump"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 0.5, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 550, 336 ), Vector2( 550, 100 ), Vector2( 550, 336 ) ]
+}
+
+[sub_resource type="Animation" id=37]
+resource_name = "Slide"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 0.31864, 1 ),
+"update": 0,
+"values": [ Vector2( -150, 336 ), Vector2( 550, 336 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 4 ),
+"transitions": PoolRealArray( 0.5, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 3, 3 ), Vector2( 2, 2 ), Vector2( 2, 2 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1.5, 1.5, 1.5, 1 ), Color( 1.55, 1.55, 1.55, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=42]
+size = 95
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=41]
+resource_name = "heart"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../heart:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.3, 0.3 ), Vector2( 0.35, 0.35 ), Vector2( 0.38, 0.38 ), Vector2( 0.3, 0.3 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=43]
+extents = Vector2( 300, 280 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 36.5, 511.5 )
+
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 72.5, 511.5 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 27.925, 32 )
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 27.925, 57 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 1.825, 513.5 )
+
+[sub_resource type="RectangleShape2D" id=34]
+extents = Vector2( 3.5, 513.5 )
+
+[sub_resource type="CircleShape2D" id=29]
+radius = 300.0
+
+[sub_resource type="Animation" id=44]
+resource_name = "Fade_In"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Black:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=36]
+extents = Vector2( 3.6, 513.5 )
+
+[node name="Level" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 9 )
+
+[node name="fill" type="Sprite" parent="."]
+position = Vector2( 554, 126 )
+z_index = -2
+texture = ExtResource( 25 )
+
+[node name="HPack_Timer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[node name="Pattern_Cool_Post" type="Timer" parent="."]
+wait_time = 2.2
+one_shot = true
+
+[node name="Pattern_Cool_Pre" type="Timer" parent="."]
+wait_time = 2.5
+
+[node name="Laser_Timer" type="Timer" parent="."]
+wait_time = 1.8
+
+[node name="Follow_Laser_Timer" type="Timer" parent="."]
+wait_time = 1.25
+
+[node name="Background" type="Node2D" parent="."]
+pause_mode = 2
+position = Vector2( 560, 136 )
+z_index = -2
+script = ExtResource( 32 )
+
+[node name="All2" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 560, 325 )
+texture = ExtResource( 15 )
+
+[node name="Inner" type="Sprite" parent="Background"]
+position = Vector2( 0, -14 )
+texture = ExtResource( 18 )
+offset = Vector2( 0, 203 )
+
+[node name="Color" type="Sprite" parent="Background"]
+scale = Vector2( 1.01339, 1.03846 )
+z_index = -1
+texture = ExtResource( 21 )
+offset = Vector2( 0, 195.482 )
+
+[node name="Horizontal" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 0, -14 )
+texture = ExtResource( 20 )
+offset = Vector2( 0, 203 )
+
+[node name="Outer" type="Sprite" parent="Background"]
+position = Vector2( 0, -14 )
+texture = ExtResource( 16 )
+offset = Vector2( 0, 203 )
+
+[node name="foTimer" type="Timer" parent="Background"]
+wait_time = 0.1
+
+[node name="fiTimer" type="Timer" parent="Background"]
+wait_time = 0.1
+
+[node name="breatheTimer" type="Timer" parent="Background"]
+wait_time = 0.1
+
+[node name="breatheTimer2" type="Timer" parent="Background"]
+wait_time = 0.1
+
+[node name="fovTimer" type="Timer" parent="Background"]
+wait_time = 0.1
+
+[node name="fivTimer" type="Timer" parent="Background"]
+wait_time = 0.1
+
+[node name="OuterGlow" type="Timer" parent="Background"]
+wait_time = 0.1
+
+[node name="Background2" type="Node2D" parent="."]
+pause_mode = 2
+position = Vector2( 560, 122 )
+script = ExtResource( 26 )
+
+[node name="All" type="Sprite" parent="Background2"]
+modulate = Color( 1, 1, 1, 0.7 )
+z_index = -2
+texture = ExtResource( 23 )
+offset = Vector2( 0, 15.5 )
+
+[node name="Tiles" type="Sprite" parent="Background2"]
+pause_mode = 1
+modulate = Color( 0.760784, 0.639216, 1, 1 )
+position = Vector2( 1, -0.5 )
+texture = ExtResource( 24 )
+offset = Vector2( -1, 203.5 )
+
+[node name="Tiles_Left" type="Sprite" parent="Background2"]
+pause_mode = 1
+modulate = Color( 0.760784, 0.639216, 1, 1 )
+position = Vector2( 1, -0.5 )
+texture = ExtResource( 5 )
+offset = Vector2( -1, 203.5 )
+
+[node name="Player" parent="Background2" instance=ExtResource( 2 )]
+pause_mode = 1
+position = Vector2( -2, 36.5 )
+
+[node name="Laser" type="Node2D" parent="Background2"]
+pause_mode = 1
+position = Vector2( 0, -0.5 )
+rotation = -0.785398
+script = ExtResource( 22 )
+
+[node name="Up" type="Area2D" parent="Background2/Laser"]
+position = Vector2( -54, -752 )
+collision_layer = 0
+
+[node name="Line2D" type="Line2D" parent="Background2/Laser/Up"]
+modulate = Color( 1.25, 1, 1, 1 )
+position = Vector2( 54, 4.00012 )
+rotation = 1.5708
+points = PoolVector2Array( -40, 0, 1540, 0 )
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="Background2/Laser/Up"]
+
+[node name="Appear_Timer" type="Timer" parent="Background2/Laser/Up"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background2/Laser/Up"]
+position = Vector2( 54, 751.5 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="Down" type="Area2D" parent="Background2/Laser"]
+position = Vector2( 1318, 45 )
+rotation = 1.5708
+collision_layer = 0
+
+[node name="Line2D" type="Line2D" parent="Background2/Laser/Down"]
+modulate = Color( 1.25, 1, 1, 1 )
+position = Vector2( -44.9944, 567 )
+rotation = 1.5708
+points = PoolVector2Array( -40, 0, 1540, 0 )
+default_color = Color( 1, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="Background2/Laser/Down"]
+
+[node name="Appear_Timer" type="Timer" parent="Background2/Laser/Down"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background2/Laser/Down"]
+position = Vector2( -44.9971, 1317 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Timer" type="Timer" parent="Background2/Laser"]
+wait_time = 0.05
+
+[node name="fade_timer" type="Timer" parent="Background2/Laser"]
+wait_time = 0.05
+
+[node name="fo_timer" type="Timer" parent="Background2/Laser"]
+wait_time = 0.05
+
+[node name="Timer" type="Timer" parent="Background2"]
+wait_time = 0.05
+
+[node name="Timer2" type="Timer" parent="Background2"]
+wait_time = 0.05
+
+[node name="rotate_timer" type="Timer" parent="Background2"]
+wait_time = 0.03
+
+[node name="rotate_left" type="Timer" parent="Background2"]
+wait_time = 0.03
+
+[node name="random_laser" type="Node2D" parent="Background2"]
+position = Vector2( -560, -122 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+pause_mode = 1
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 574.0
+margin_bottom = 62.0
+rect_pivot_offset = Vector2( -614, -338 )
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 39 )
+text = " "
+align = 2
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeathTimer" type="Timer" parent="CanvasLayer/Score"]
+wait_time = 0.5
+
+[node name="decimal" type="Label" parent="CanvasLayer/Score"]
+pause_mode = 1
+margin_left = 573.0
+margin_top = 10.0
+margin_right = 660.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( -614, -338 )
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 29 )
+autoplay = true
+bus = "Music"
+
+[node name="Square" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 4 )
+bus = "SFX"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 12 )
+
+[node name="Popup" type="Node2D" parent="."]
+pause_mode = 2
+visible = false
+script = ExtResource( 17 )
+
+[node name="window" type="Sprite" parent="Popup"]
+modulate = Color( 1, 1.2, 1.2, 1 )
+position = Vector2( 563, 314.75 )
+scale = Vector2( 0.669643, 0.856154 )
+z_index = 1
+texture = ExtResource( 28 )
+
+[node name="Resume_Timer" type="Timer" parent="Popup"]
+pause_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Popup"]
+
+[node name="Pause_Label" type="Label" parent="Popup/CanvasLayer"]
+visible = false
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+margin_left = 331.0
+margin_top = 155.0
+margin_right = 1197.0
+margin_bottom = 284.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 0.435294, 0.858824, 1, 1 )
+custom_fonts/font = SubResource( 40 )
+text = "PAUSED"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Countdown" type="Label" parent="Popup/CanvasLayer"]
+visible = false
+margin_left = 509.0
+margin_top = 259.0
+margin_right = 691.0
+margin_bottom = 364.0
+custom_fonts/font = SubResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="CanvasLayer" parent="Popup"]
+
+[node name="Resume" type="TouchScreenButton" parent="Popup/Buttons"]
+pause_mode = 2
+visible = false
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+position = Vector2( 640, 377 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 1
+normal = ExtResource( 11 )
+shape = SubResource( 13 )
+
+[node name="Exit" type="TouchScreenButton" parent="Popup/Buttons"]
+visible = false
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+position = Vector2( 309, 374 )
+scale = Vector2( 0.3, 0.3 )
+z_index = 1
+normal = ExtResource( 12 )
+shape = SubResource( 19 )
+
+[node name="Fade_In" type="AnimationPlayer" parent="Popup"]
+root_node = NodePath("../../..")
+anims/Fade_In = SubResource( 16 )
+anims/Jump = SubResource( 17 )
+anims/Slide = SubResource( 37 )
+
+[node name="Death_Popup" type="Node2D" parent="."]
+pause_mode = 2
+visible = false
+z_index = 1
+script = ExtResource( 8 )
+
+[node name="Resume_Timer" type="Timer" parent="Death_Popup"]
+pause_mode = 2
+
+[node name="Backgrou" type="Sprite" parent="Death_Popup"]
+modulate = Color( 1, 1, 1, 0.5 )
+position = Vector2( 559, 326 )
+texture = ExtResource( 34 )
+
+[node name="Revive" type="Label" parent="Death_Popup"]
+margin_left = 341.0
+margin_top = 99.0
+margin_right = 1207.0
+margin_bottom = 228.0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 10.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 42 )
+text = "Continue?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Countdown" type="Label" parent="Death_Popup"]
+margin_left = 476.0
+margin_top = 262.0
+margin_right = 658.0
+margin_bottom = 367.0
+custom_fonts/font = SubResource( 20 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="give_up" type="TouchScreenButton" parent="Death_Popup"]
+position = Vector2( 417, 570 )
+normal = ExtResource( 33 )
+
+[node name="Timer" type="Timer" parent="Death_Popup"]
+
+[node name="die" type="AudioStreamPlayer2D" parent="Death_Popup"]
+pause_mode = 2
+stream = ExtResource( 27 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Death_Popup"]
+anims/heart = SubResource( 41 )
+
+[node name="Revive" type="TouchScreenButton" parent="."]
+pause_mode = 2
+modulate = Color( 1.2, 1.2, 1.2, 1 )
+position = Vector2( 452, 380 )
+scale = Vector2( 0.325, 0.325 )
+z_index = 2
+normal = ExtResource( 6 )
+shape = SubResource( 43 )
+
+[node name="heart" type="Sprite" parent="."]
+modulate = Color( 1.25, 1.25, 1.25, 1 )
+position = Vector2( 567, 476 )
+scale = Vector2( 0.357387, 0.357387 )
+z_index = 2
+texture = ExtResource( 31 )
+
+[node name="bgCollision" type="Node2D" parent="."]
+position = Vector2( -10, 0 )
+
+[node name="Left Wall" type="StaticBody2D" parent="bgCollision"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bgCollision/Left Wall"]
+visible = false
+position = Vector2( 43.5, 140.5 )
+shape = SubResource( 21 )
+
+[node name="Bigger" type="CollisionShape2D" parent="bgCollision/Left Wall"]
+position = Vector2( 79.5, 140.5 )
+shape = SubResource( 33 )
+
+[node name="Floor" type="StaticBody2D" parent="bgCollision"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bgCollision/Floor"]
+visible = false
+position = Vector2( 570.5, 622 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 22 )
+
+[node name="Bigger" type="CollisionShape2D" parent="bgCollision/Floor"]
+position = Vector2( 570.5, 597 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 32 )
+
+[node name="Floor2" type="StaticBody2D" parent="bgCollision"]
+position = Vector2( 0, -920 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bgCollision/Floor2"]
+visible = false
+position = Vector2( 570.5, 622 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 22 )
+
+[node name="Bigger" type="CollisionShape2D" parent="bgCollision/Floor2"]
+position = Vector2( 570.5, 597 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 32 )
+
+[node name="Right Wall" type="StaticBody2D" parent="bgCollision"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bgCollision/Right Wall"]
+visible = false
+position = Vector2( 1095.5, 142.5 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 23 )
+
+[node name="Bigger" type="CollisionShape2D" parent="bgCollision/Right Wall"]
+position = Vector2( 1062, 142.5 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 34 )
+
+[node name="Not using" type="Sprite" parent="."]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Not using"]
+modulate = Color( 0.435294, 0.435294, 0.435294, 1 )
+position = Vector2( 44, 248 )
+rotation = 1.5708
+scale = Vector2( 1, 1.09151 )
+texture = ExtResource( 14 )
+
+[node name="Sprite3" type="Sprite" parent="Not using"]
+modulate = Color( 0.435294, 0.435294, 0.435294, 1 )
+position = Vector2( 1064, 248 )
+rotation = 1.5708
+scale = Vector2( 1, 1.04667 )
+texture = ExtResource( 14 )
+flip_v = true
+
+[node name="Sprite" type="Sprite" parent="Not using"]
+modulate = Color( 0.34902, 0.34902, 0.34902, 1 )
+position = Vector2( 557, 628 )
+scale = Vector2( 1, 1.34833 )
+texture = ExtResource( 14 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Wall_Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="double_wall" type="Timer" parent="."]
+
+[node name="First_Wall" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="First_Square" type="Timer" parent="."]
+wait_time = 2.2
+one_shot = true
+
+[node name="Square_Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Touch_Buttons" parent="." instance=ExtResource( 3 )]
+
+[node name="Intro" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2( 1005, 195 )
+scale = Vector2( 0.171666, 0.171666 )
+normal = ExtResource( 10 )
+shape = SubResource( 29 )
+
+[node name="Fade_In" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Intro")
+anims/Fade_In = SubResource( 44 )
+
+[node name="Black" type="Sprite" parent="."]
+visible = false
+position = Vector2( 561, 333 )
+scale = Vector2( 1.06273, 1.05846 )
+z_index = -1
+texture = ExtResource( 13 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Bigger" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1050, 142.5 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 36 )
+disabled = true
+
+[node name="hook_right" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Bigger" type="CollisionShape2D" parent="hook_right"]
+position = Vector2( 1050, 142.5 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 36 )
+disabled = true
+
+[node name="hook_left" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Bigger" type="CollisionShape2D" parent="hook_left"]
+position = Vector2( 79.5, 140.5 )
+scale = Vector2( 20, 1 )
+shape = SubResource( 36 )
+disabled = true
+
+[node name="pattern_objects" type="Node2D" parent="."]
+
+[node name="random_laser" type="Timer" parent="."]
+wait_time = 1.25
+one_shot = true
+
+[node name="boosts" type="Node2D" parent="."]
+
+[node name="60" type="TouchScreenButton" parent="boosts"]
+position = Vector2( 405, 81 )
+normal = ExtResource( 36 )
+
+[node name="120" type="TouchScreenButton" parent="boosts"]
+position = Vector2( 598, 80 )
+normal = ExtResource( 35 )
+
+[node name="boost" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="HPack_Timer" to="." method="_on_HPack_Timer_timeout"]
+[connection signal="timeout" from="Pattern_Cool_Post" to="." method="_on_Pattern_Cool_Post_timeout"]
+[connection signal="timeout" from="Pattern_Cool_Pre" to="." method="_on_Pattern_Cool_Pre_timeout"]
+[connection signal="timeout" from="Laser_Timer" to="." method="_on_Laser_Timer_timeout"]
+[connection signal="timeout" from="Follow_Laser_Timer" to="." method="_on_Follow_Laser_Timer_timeout"]
+[connection signal="timeout" from="Background/foTimer" to="Background" method="_on_foTimer_timeout"]
+[connection signal="timeout" from="Background/fiTimer" to="Background" method="_on_fiTimer_timeout"]
+[connection signal="timeout" from="Background/breatheTimer" to="Background" method="_on_breatheTimer_timeout"]
+[connection signal="timeout" from="Background/breatheTimer2" to="Background" method="_on_breatheTimer2_timeout"]
+[connection signal="timeout" from="Background/fovTimer" to="Background" method="_on_fovTimer_timeout"]
+[connection signal="timeout" from="Background/fivTimer" to="Background" method="_on_fivTimer_timeout"]
+[connection signal="timeout" from="Background/OuterGlow" to="Background" method="_on_OuterGlow_timeout"]
+[connection signal="body_entered" from="Background2/Laser/Up" to="Background2/Laser" method="_on_Up_body_entered"]
+[connection signal="body_entered" from="Background2/Laser/Down" to="Background2/Laser" method="_on_Down_body_entered"]
+[connection signal="timeout" from="Background2/Laser/Timer" to="Background2/Laser" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Background2/Laser/fade_timer" to="Background2/Laser" method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="Background2/Laser/fo_timer" to="Background2/Laser" method="_on_fo_timer_timeout"]
+[connection signal="timeout" from="Background2/Timer" to="Background2" method="_on_Timer_timeout"]
+[connection signal="timeout" from="Background2/Timer2" to="Background2" method="_on_Timer2_timeout"]
+[connection signal="timeout" from="Background2/rotate_timer" to="Background2" method="_on_rotate_timer_timeout"]
+[connection signal="timeout" from="Background2/rotate_left" to="Background2" method="_on_rotate_left_timeout"]
+[connection signal="pressed" from="Popup/Buttons/Resume" to="Popup" method="_on_Resume_pressed"]
+[connection signal="pressed" from="Popup/Buttons/Exit" to="Popup" method="_on_Exit_pressed"]
+[connection signal="pressed" from="Death_Popup/give_up" to="Death_Popup" method="_on_give_up_pressed"]
+[connection signal="pressed" from="Revive" to="Death_Popup" method="_on_Revive_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Wall_Timer" to="." method="_on_Wall_Timer_timeout"]
+[connection signal="timeout" from="double_wall" to="." method="_on_double_wall_timeout"]
+[connection signal="timeout" from="First_Wall" to="." method="_on_First_Wall_timeout"]
+[connection signal="timeout" from="First_Square" to="." method="_on_First_Square_timeout"]
+[connection signal="timeout" from="Square_Timer" to="." method="_on_Square_Timer_timeout"]
+[connection signal="pressed" from="Touch_Buttons/Controls/Pause" to="Popup" method="_on_Pause_pressed"]
+[connection signal="pressed" from="Intro" to="." method="_on_Intro_pressed"]
+[connection signal="body_entered" from="Area2D" to="Background2" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="hook_right" to="Background2/Player" method="_on_hook_right_body_entered"]
+[connection signal="body_exited" from="hook_right" to="Background2/Player" method="_on_hook_right_body_exited"]
+[connection signal="body_entered" from="hook_left" to="Background2/Player" method="_on_hook_left_body_entered"]
+[connection signal="body_exited" from="hook_left" to="Background2/Player" method="_on_hook_left_body_exited"]
+[connection signal="timeout" from="random_laser" to="Background2/Laser" method="_on_random_laser_timeout"]
+[connection signal="pressed" from="boosts/60" to="." method="_on_60_pressed"]
+[connection signal="pressed" from="boosts/120" to="." method="_on_120_pressed"]
+[connection signal="timeout" from="boost" to="." method="_on_boost_timeout"]
+
+[editable path="Touch_Buttons"]
